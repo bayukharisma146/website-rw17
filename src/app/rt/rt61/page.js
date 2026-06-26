@@ -91,19 +91,21 @@ export default function RT61Page() {
 
       <div className="pt-10 md:pt-16">
         {/* PETA */}
-        <section className="mx-auto max-w-7xl px-6 pb-20">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-16 md:pb-20">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
               Peta RT 61
             </h2>
-            <p className="text-slate-500 mt-2">Batas wilayah</p>
+            <p className="mt-2 text-sm md:text-base text-slate-500">
+              Batas wilayah
+            </p>
           </div>
 
-          <div className="overflow-hidden rounded-[28px] border shadow-lg">
+          <div className="overflow-hidden rounded-2xl md:rounded-[28px] border shadow-lg bg-white">
             <img
               src="/images/PETA-61.png"
               alt="Peta RT 61"
-              className="h-[280px] md:h-[550px] w-full object-cover"
+              className="w-full h-auto max-h-[650px] object-contain"
             />
           </div>
         </section>
@@ -123,11 +125,15 @@ export default function RT61Page() {
           <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide touch-pan-x pb-2">
             {items.map((item, i) => (
               <div
-                key={i} onClick={() => setSelected(item)} className="snap-center flex-shrink-0 w-[85%] sm:w-[70%] md:w-[380px] bg-white border rounded-3xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                key={i}
+                onClick={() => setSelected(item)}
+                className="snap-center flex-shrink-0 w-[85%] sm:w-[70%] md:w-[380px] bg-white border rounded-3xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 {/* IMAGE */}
                 <div className="h-52 md:h-60 overflow-hidden">
-                  <img src={item.images[0]}alt={item.title}
+                  <img
+                    src={item.images[0]}
+                    alt={item.title}
                     className="
                       h-full w-full object-cover
                       transition-transform duration-700
@@ -194,7 +200,10 @@ export default function RT61Page() {
                 ],
               },
             ].map((item, index) => (
-              <div key={index} onClick={() => setSelected(item)} className={`
+              <div
+                key={index}
+                onClick={() => setSelected(item)}
+                className={`
               relative
               cursor-pointer
               overflow-hidden

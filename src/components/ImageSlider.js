@@ -1,34 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback } from "react";
 
 export default function ImageSlider({ images = [] }) {
-  const [index, setIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    dragFree: false,
+    skipSnaps: false,
+  });
 
-  useEffect(() => {
-    if (!images.length) return;
+  const prev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
 
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 3000); // ganti tiap 3 detik
+  const next = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
 
-    return () => clearInterval(interval);
-  }, [images]);
+  if (!images.length) return null;
 
   return (
-    <div className="relative h-64 w-full overflow-hidden rounded-3xl">
-      {images.map((img, i) => (
-        <img
-          key={i}
-          src={img}
-          alt="slider"
-          className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-in-out
-            ${i === index ? "opacity-100 scale-105" : "opacity-0 scale-100"}`}
-        />
-      ))}
+    <div className="relative">
+      <div ref={emblaRef} className="overflow-hidden rounded-3xl">
+        <div className="flex">
+          {images.map((img, index) => (
+            <div key={index} className="flex-[0_0_100%]">
+              <img
+                src={img}
+                alt={`Slide ${index + 1}`}
+                className="h-64 sm:h-80 md:h-96 w-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
-      {/* overlay gradient biar fancy */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/90 rounded-full px-3 py-2 shadow-lg"
+          >
+            ‹
+          </button>
+
+          <button
+            onClick={next}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/90 rounded-full px-3 py-2 shadow-lg"
+          >
+            ›
+          </button>
+        </>
+      )}
     </div>
   );
 }

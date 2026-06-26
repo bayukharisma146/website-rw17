@@ -11,11 +11,10 @@ export default function Home() {
       desc: "Lingkungan aktif dengan kegiatan warga dan UMKM kuliner.",
       images: [
         "images/RT-61-GD.jpeg",
-        "images/RT-61-M -ukuwah-1.jpeg",
+        "images/RT-61-M-ukuwah-1.jpeg",
         "images/RT-61-M-ukuwah-2.jpeg",
         "images/RT-61-Masjid.jpeg",
-        "images/RT-61-TK.jpeg"
-
+        "images/RT-61-TK.jpeg",
       ],
     },
     {
@@ -47,56 +46,59 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-emerald-50/40 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-white via-emerald-50/40 to-white overflow-x-hidden">
       <HeroSlider />
       <Navbar />
 
-      {/* BACKGROUND GLOW */}
+      {/* Background Glow */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-40 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-emerald-200 blur-[120px] opacity-40" />
-        <div className="absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-teal-200 blur-[120px] opacity-30" />
+        <div className="absolute -top-40 left-1/2 h-[300px] w-[300px] md:h-[400px] md:w-[400px] -translate-x-1/2 rounded-full bg-emerald-200 blur-[120px] opacity-40" />
+        <div className="absolute bottom-0 right-0 h-[220px] w-[220px] md:h-[300px] md:w-[300px] rounded-full bg-teal-200 blur-[120px] opacity-30" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 py-16">
-        {/* HEADER */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
             RW 17
           </h1>
-          <p className="mt-4 mx-auto max-w-2xl text-gray-600 leading-relaxed">
-            RW 17 terdiri dari 4 Rukun Tetangga (RT) yang hidup dalam suasana desa yang hangat, harmonis, dan terus berkembang melalui aktivitaswarga serta UMKM lokal. 
-            Setiap RT memiliki potensi unik yangmencerminkan semangat gotong royong, kreativitas, dan kemandirian
-            masyarakat dalam membangun lingkungan yang lebih maju.
+
+          <p className="mt-4 mx-auto max-w-3xl text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2">
+            RW 17 terdiri dari empat RT yang berkembang dalam suasana harmonis
+            dengan semangat gotong royong, kebersamaan, dan partisipasi aktif
+            masyarakat.
           </p>
         </div>
 
-        {/* CONTENT */}
-        <div className="space-y-24">
+        {/* Content */}
+        <div className="space-y-14 md:space-y-24">
           {items.map((item, index) => (
             <div
               key={index}
-              className={`flex flex-col md:flex-row items-center gap-10 ${
+              className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 ${
                 index % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
-              {/* IMAGE */}
+              {/* Image */}
               <div className="w-full md:w-1/2">
-                <ImageSlider images={item.images} />
+                <div className="overflow-hidden rounded-3xl shadow-lg">
+                  <ImageSlider images={item.images} />
+                </div>
               </div>
 
-              {/* CARD */}
+              {/* Card */}
               <div className="w-full md:w-1/2">
                 <Link href={item.href}>
-                  <div className="rounded-3xl bg-white/70 backdrop-blur-xl border border-white shadow-lg p-8 hover:-translate-y-1 hover:shadow-2xl transition duration-300">
-                    <h2 className="text-2xl font-bold text-gray-900">
+                  <div className="rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-lg p-5 sm:p-6 md:p-8 hover:-translate-y-1 hover:shadow-2xl transition duration-300 cursor-pointer">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                       {item.title}
                     </h2>
 
-                    <p className="mt-3 text-gray-600 leading-relaxed">
+                    <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
                       {item.desc}
                     </p>
 
-                    <div className="mt-6 inline-flex items-center text-emerald-600 font-medium">
+                    <div className="mt-6 inline-flex items-center text-emerald-600 font-semibold">
                       Jelajahi RT →
                     </div>
                   </div>
